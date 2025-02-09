@@ -4,8 +4,8 @@ import cartReducer from '../service/cartSlice'
 //----> Load cart items from localStorage
 const loadFromLocalStorage = () => {
     try {
-        const serializedState = localStorage.getItem('cartItems')
-        return serializedState ? JSON.parse(serializedState) : []
+        const cartItems = localStorage.getItem('cartItems')
+        return cartItems ? JSON.parse(cartItems) : []
     } catch (e) {
         console.error('Could not load cart from localStorage', e)
         return []
@@ -27,8 +27,8 @@ export const store = configureStore({
 store.subscribe(() => {
     try {
         const { items } = store.getState().cart
-        const serializedState = JSON.stringify(items)
-        localStorage.setItem('cartItems', serializedState)
+        const cartItems = JSON.stringify(items)
+        localStorage.setItem('cartItems', cartItems)
     } catch (e) {
         console.error('Could not save cart to localStorage', e)
     }
